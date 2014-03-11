@@ -1,6 +1,7 @@
 {
 	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme",
-	"font_face": "Monospace",
+	"font_face": "Inconsolata",
+	"font_size": 13,
 	"http_proxy": "web-proxy.gbr.hp.com:8080",
 	"ignored_packages":
 	[
