@@ -1,0 +1,9 @@
+[user]
+	name = Rob Desbois
+	email = rob.desbois@gmail.com
+[push]
+	default = simple
+[alias]
+	ci = commit
+	co = checkout
+	df = diff -b
