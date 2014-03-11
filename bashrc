@@ -11,3 +11,5 @@ fi
 # Fix common finger stupidities
 alias gti=git
 alias gerp=grep
+
+alias vi=vim
