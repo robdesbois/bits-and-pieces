@@ -24,7 +24,7 @@ vim
 * google-chrome - due frequent update & slow repository pull from upstream
 * sublime text - sublimetext.com 
 * Virtual Box - virtualbox.org
-
+* Inconsolata font - http://www.levien.com/type/myfonts/inconsolata.html
 
 === Debug info ===
 
