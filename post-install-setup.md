@@ -6,6 +6,7 @@
 
 == Packages ==
 * May need to remove vim-minimal before installing vim
+* Setup rpmfusion free & non-free repositories from rpmfusion.org before proceeding
 
 ant
 gcc-c++
@@ -17,14 +18,15 @@ strace
 subversion
 tmux
 vim
+xorg-x11-drv-nvidia
 
 
 === Non-repository packages ===
-* rpmfusion-free-release - rpmfusion.org
 * google-chrome - due frequent update & slow repository pull from upstream
 * sublime text - sublimetext.com 
 * Virtual Box - virtualbox.org
 * Inconsolata font - http://www.levien.com/type/myfonts/inconsolata.html
+
 
 === Debug info ===
 
