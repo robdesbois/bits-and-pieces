@@ -3,6 +3,8 @@
 	"font_face": "Inconsolata",
 	"font_size": 12,
 	"http_proxy": "web-proxy.gbr.hp.com:8080",
+    "file_exclude_patterns": ["*.swp"],
+
 	"ignored_packages":
 	[
 		"Vintage"
