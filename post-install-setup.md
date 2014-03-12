@@ -9,6 +9,7 @@
 * Setup rpmfusion free & non-free repositories from rpmfusion.org before proceeding
 
 ant
+boost boost-devel
 gcc-c++
 git
 gnome-tweak-tool
@@ -17,8 +18,16 @@ mono-winforms
 strace
 subversion
 tmux
+valgrind
 vim
 xorg-x11-drv-nvidia
+
+== Project-specific packages ==
+libuuid-devel
+cppunit cppunit-devel
+inotify-tools inotify-tools-devel
+openssl openssl-devel openssl-devel.i686
+valgrind-devel
 
 
 === Non-repository packages ===
