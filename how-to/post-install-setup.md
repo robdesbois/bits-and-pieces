@@ -14,6 +14,7 @@ gcc-c++
 git
 gnome-tweak-tool
 kernel-devel
+man-pages
 meld
 mono-winforms
 strace
@@ -24,6 +25,7 @@ vim
 xorg-x11-drv-nvidia
 
 == Project-specific packages ==
+glibc-devel.i686
 libuuid-devel
 cppunit cppunit-devel
 inotify-tools inotify-tools-devel
