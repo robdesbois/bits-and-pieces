@@ -7,13 +7,9 @@ targets = $(shell find . -path ./does-flto-do-function-inlining -prune -o -name 
 
 all: $(targets)
 
-pt:
-	@echo $(targets)
+$(targets): %: %.cpp
+	$(CC) $(CFLAGS) -o$@ $^
 
-#$(targets): %: %.cpp
-#	$(CC) $(CFLAGS) -o$@ $^
-
-perf-test-boost-vs-std: LDLIBS+=-lboost_system
 perf-test-boost-vs-std: LDLIBS+=-lboost_system
 
 clean: 
