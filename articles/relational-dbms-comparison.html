@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SQLite vs MySQL vs PostgreSQL: A Comparison Of Relational Database Management Systems | DigitalOcean</title>
+<meta content='&lt;h3&gt;Introduction&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;Relational databases have been in use for a long time. They became popular thanks to management systems that implement the relational model extremely well, which has proven to be a great way to work with data [especially for mission-critical applications].&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;In this DigitalOcean article, we are going to try to understand the core differences of some of the most commonly used and popular relational database management systems (RDBMS). We will explore their fundamental differences in terms of features and functionality, how they work, and when one excels over the other in order to help developers with choosing a RDBMS.&lt;/p&gt;&#x000A;&#x000A;&lt;h2&gt;Glossary&lt;/h2&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;h3&gt;1. Database Management Systems&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ol&gt;&#x000A;&lt;li&gt;Relational Database Management Systems&lt;/li&gt;&#x000A;&lt;li&gt;Relations And Data Types&lt;/li&gt;&#x000A;&lt;li&gt;Popular And Important Relational Databases&lt;/li&gt;&#x000A;&lt;/ol&gt;&#x000A;&#x000A;&lt;h3&gt;2. SQLite&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ol&gt;&#x000A;&lt;li&gt;SQLite&amp;#39;s Supported Data Types&lt;/li&gt;&#x000A;&lt;li&gt;Advantages of SQLite&lt;/li&gt;&#x000A;&lt;li&gt;Disadvantages of SQLite&lt;/li&gt;&#x000A;&lt;li&gt;When To Use SQLite&lt;/li&gt;&#x000A;&lt;li&gt;When Not To Use SQLite&lt;/li&gt;&#x000A;&lt;/ol&gt;&#x000A;&#x000A;&lt;h3&gt;3. MySQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ol&gt;&#x000A;&lt;li&gt;MySQL&amp;#39;s Supported Data Types&lt;/li&gt;&#x000A;&lt;li&gt;Advantages of MySQL&lt;/li&gt;&#x000A;&lt;li&gt;Disadvantages of MySQL&lt;/li&gt;&#x000A;&lt;li&gt;When To Use MySQL&lt;/li&gt;&#x000A;&lt;li&gt;When Not To Use MySQL&lt;/li&gt;&#x000A;&lt;/ol&gt;&#x000A;&#x000A;&lt;h3&gt;4. PostgreSQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ol&gt;&#x000A;&lt;li&gt;PostgreSQL&amp;#39;s Supported Data Types&lt;/li&gt;&#x000A;&lt;li&gt;Advantages of PostgreSQL&lt;/li&gt;&#x000A;&lt;li&gt;Disadvantages of PostgreSQL&lt;/li&gt;&#x000A;&lt;li&gt;When To Use PostgreSQL&lt;/li&gt;&#x000A;&lt;li&gt;When Not To Use PostgreSQL&lt;/li&gt;&#x000A;&lt;/ol&gt;&#x000A;&#x000A;&lt;h2&gt;Database Management Systems&lt;/h2&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;Databases are logically modelled storage spaces for all kinds of different information (data). Each database, other than schema-less ones, have a model, which provide structure for the data being dealt with. Database management systems are applications (or libraries) which manage databases of various shapes, sizes, and sorts.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; To learn more about Database Management Systems, check out our article: &lt;a href="http://link_to_10_1_understanding_databases"&gt;Understanding Databases&lt;/a&gt;.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Relational Database Management Systems&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;Relational Database Systems implement the relational model to work with the data. Relational model shapes whatever information to be stored by defining them as related entities with attributes across tables (i.e. schemas).&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;These type of database management systems require structures (e.g. a table) to be defined in order to contain and work with the data. With tables, each column (e.g. attribute) holds a different type (e.g. data type) of information. Each record in the database, uniquely identified with &lt;em&gt;keys&lt;/em&gt;, translates to a row that belongs to a table, with each row&amp;#39;s series of attributes being represented as the columns of a table -- all related together, as defined within the relational model.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Relations And Data Types&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;Relations can be considered as mathematical sets that contain series of attributes which collectively represent the database and information being kept. This type of identification and collection method allow relational databases to work the way they do.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;When defining a table to insert records, each element forming a record (i.e. attribute) must match the defined &lt;em&gt;data type&lt;/em&gt; (e.g. an integer, a date etc.). Different relational database management systems implement different data types -- which are not always directly interchangeable.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;Working with and through constraints, like the one we have just explained, is common with relational databases. In fact, constraints form the core of the relations.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you need to work with truly unrelated, randomly represented information (e.g. a document), you might be interested in using a NoSQL (schema-less database). If you would like to learn more about them, check out our article &lt;a href="http://link_to_nosql_comparison_10_3"&gt;A Comparison Of NoSQL Database Management Systems&lt;/a&gt;.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Popular And Important Relational Databases&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;In this article, we are going to introduce three major and important open-source relational database management systems that have helped to shape the world of application development.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;SQLite:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A very powerful, embedded relational database management system. &lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;MySQL:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;The most popular and commonly used RDBMS.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;PostgreSQL:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;The most advanced, SQL-compliant and open-source objective-RDBMS.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Open-source applications almost always come with the freedom to use any way desired. Most of the time freedom to fork the project (therefore use the code) to create something new is also permitted. If you are interested in DBMSs, you might want to check out some forked projects, based on these popular ones, such as the &lt;a href="https://mariadb.org/"&gt;MariaDB&lt;/a&gt;.&lt;/p&gt;&#x000A;&#x000A;&lt;h2&gt;SQLite&lt;/h2&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;SQLite is an amazing library that gets embedded inside the application that makes use of. As a self-contained, file-based database, SQLite offers an amazing set of tools to handle all sorts of data with much less constraint and ease compared to hosted, process based (server) relational databases.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;When an application uses SQLite, the integration works with functional and direct calls made to a file holding the data (i.e. SQLite database) instead of communicating through an interface of sorts (i.e. ports, sockets). This makes SQLite extremely fast and efficient, and also powerful thanks to the library&amp;#39;s underlying technology.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;SQLite&amp;#39;s Supported Data Types&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;NULL:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;NULL value.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;INTEGER:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;REAL:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Floating point value, stored as an 8-byte IEEE floating point number.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;TEXT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;BLOB:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A blob of data, stored exactly as it was input.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; To learn more about SQLite&amp;#39;s data types and SQLite type affinity, check out the &lt;a href="http://www.sqlite.org/datatype3.html"&gt;official documentation&lt;/a&gt; on the subject.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Advantages of SQLite&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;File based:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;The entire database consists of a single file on the disk, which makes it extremely portable.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Standards-aware:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Although it might appear like a &amp;quot;simple&amp;quot; DB implementation, SQLite uses SQL. It has some features omitted (&lt;code&gt;RIGHT OUTER JOIN&lt;/code&gt; or &lt;code&gt;FOR EACH STATEMENT&lt;/code&gt;), however, some additional ones are baked in.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Great for developing and even testing:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;During the development phase of most applications, for a majority of people it is extremely likely to need a solution that can scale for concurrency. SQLite, with its rich feature base, can offer more than what is needed for development with the simplicity of working with a single file and a linked C based library.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Disadvantages of SQLite&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;No user management:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Advanced databases come with the support for users, i.e. managed connections with set access privileges to the database and tables. Given the purpose and nature of SQLite (no higher-levels of multi-client concurrency), this feature does not exist.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Lack of possibility to tinker with for additional performance:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Again by design, SQLite is not possible to tinker with to obtain a great deal of additional performance. The library is simple to tune and simple to use. Since it is not complicated, it is technically not possible to make it more performant than it already, amazingly is.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When To Use SQLite&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Embedded applications:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;All applications that need portability, that do not require expansion, e.g. single-user local applications, mobile applications or games.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Disk access replacement:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;In many cases, applications that need to read/write files to disk directly can benefit from switching to SQLite for additional functionality and simplicity that comes from using the &lt;em&gt;Structured Query Language&lt;/em&gt; (SQL).&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Testing:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;It is an overkill for a large portion of applications to use an additional process for testing the business-logic (i.e. the application&amp;#39;s main purpose: functionality). &lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When Not To Use SQLite&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Multi-user applications:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;If you are working on an application whereby multiple clients need to access and use the same database, a fully-featured RDBM (e.g. MySQL) is probably better to choose over SQLite.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Applications requiring high write volumes:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;One of the limitations of SQLite is the &lt;em&gt;write&lt;/em&gt; operations. This DBMS allows only one single write*operating to take place at any given time, hence allowing a limited throughput.&lt;/p&gt;&#x000A;&#x000A;&lt;h2&gt;MySQL&lt;/h2&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;MySQL is the most popular one of all the large-scale database servers. It is a feature rich, open-source product that powers a lot of web-sites and applications online. Getting started with MySQL is relatively easy and developers have access to a massive array of information regarding the database on the internet.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; It should be stated that given the popularity of the product, there are a lot of third-party applications, tools and integrated libraries which help greatly with many aspects of working with this RDBMS.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;Despite not trying to implement the full SQL standard, MySQL offers a lot of functionality to the users. As a stand-alone database server, applications talk to MySQL daemon process to access the database itself -- unlike SQLite. &lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;MySQL&amp;#39;s Supported Data Types&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;TINYINT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A very small integer.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;SMALLINT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A small integer.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;MEDIUMINT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A medium-size integer.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;INT or INTEGER:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A normal-size integer.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;BIGINT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A large integer.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;FLOAT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A small (single-precision) floating-point number. Cannot be unsigned.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;DOUBLE, DOUBLE PRECISION, REAL:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A normal-size (double-precision) floating-point number. Cannot be unsigned.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;DECIMAL, NUMERIC:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;An unpacked floating-point number. Cannot be unsigned.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;DATE:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A date.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;DATETIME:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A date and time combination.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;TIMESTAMP:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A timestamp.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;TIME:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A time.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;YEAR:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A year in 2- or 4- digit formats (default is 4-digit).&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;CHAR:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A fixed-length string that is always right-padded with spaces to the specified length when stored.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;VARCHAR:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A variable-length string.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;TINYBLOB, TINYTEXT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A BLOB or TEXT column with a maximum length of 255 (2^8 - 1) characters.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;BLOB, TEXT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A BLOB or TEXT column with a maximum length of 65535 (2^16 - 1) characters.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;MEDIUMBLOB, MEDIUMTEXT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A BLOB or TEXT column with a maximum length of 16777215 (2^24 - 1) characters.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;LONGBLOB, LONGTEXT:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A BLOB or TEXT column with a maximum length of 4294967295 (2^32 - 1) characters.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;ENUM:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;An enumeration.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;SET:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A set.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Advantages of MySQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Easy to work with:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;MySQL can be installed very easily. Third-party tools, including visual ones (i.e. GUIs) make it extremely simple to get started with the database.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Feature rich:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;MySQL supports a lot of the SQL functionality that is expected from a RDBMS -- either directly or indirectly.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Secure:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A lot of security features, some rather advanced, are built in MySQL.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Scalable and powerful:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;MySQL can handle &lt;em&gt;a lot&lt;/em&gt; of data and furthermore it can be used &amp;quot;at scale&amp;quot;, if needed be.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Speedy:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Giving up some standards allows MySQL to work very efficiently and cut corners, thus providing speed gains.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Disadvantages of MySQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Known limitations:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;By design, MySQL does not intend to do everything and it comes with functional limitations that some state-of-the-art applications might require.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Reliability issues:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;The way certain functionality gets handled with MySQL (e.g. references, transactions, auditing etc.) renders it a little-less reliable compared to some other RDBMSs.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Stagnated development:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Although MySQL is still technical an open-source product, there are complaints regarding the development process since its acquisition. However, it should be noted that there are some MySQL-based, fully-integrated databases that add value on top of the standard MySQL installations (e.g. MariaDB).&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When To Use MySQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Distributed operations:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;When you need more than what SQLite can offer, including MySQL to your deployment stack, just like any stand-alone database server, brings a lot of operational freedom together with some advanced features.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;High security:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;MySQL&amp;#39;s security features provide reliable protection for data-access (and use) in a simple way.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Web-sites and web-applications:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;A great majority of web-sites (and web-applications) can simply work on MySQL despite the constraints. This flexible and somewhat scalable tool is easy to use and easy to manage -- which proves very helpful in the long run.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Custom solutions:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;If you are working on a highly specific and extremely custom solution, MySQL can tag along easily and go by your rules thanks to its rich configuration settings and operation modes.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When Not To Use MySQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;SQL compliance:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Since MySQL does not [try to] implement the full SQL standard, this tool is not completely SQL compliant. If you might need integration with such RDBMSs, switching from MySQL will not be easy.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Concurrency:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Even though MySQL and some storage engines perform really well with &lt;em&gt;read&lt;/em&gt; operations, concurrent &lt;em&gt;read-writes&lt;/em&gt; can be problematic.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Lack of features:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Again, depending on the choice of the database-engine, MySQL can lack certain features, such as the full-text search.  &lt;/p&gt;&#x000A;&#x000A;&lt;h2&gt;PostgreSQL&lt;/h2&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;p&gt;PostgreSQL is &lt;em&gt;the&lt;/em&gt; advanced, open-source [object]-relational database management system which has the main goal of being standards-compliant and extensible. PostgreSQL, or Postgres, tries to adopt the ANSI/ISO SQL standards together with the revisions. &lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;Compared to other RDBMSs, PostgreSQL differs itself with its support for highly required and integral object-oriented and/or relational database functionality, such as the complete support for reliable transactions, i.e. Atomicity, Consistency, Isolation, Durability (ACID).&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;Due to the powerful underlying technology, Postgres is extremely capable of handling many tasks very efficiently. Support for concurrency is achieved without read locks thanks to the implementation of Multiversion Concurrency Control (MVCC), which also ensures the ACID compliance.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;PostgreSQL is highly programmable, and therefore extendible, with custom procedures that are called &amp;quot;stored procedures&amp;quot;. These functions can be created to simplify the execution of repeated, complex and often required database operations.&lt;/p&gt;&#x000A;&#x000A;&lt;p&gt;Although this DBMS does not have the popularity of MySQL, there are many amazing third-party tools and libraries that are designed to make working with PostgreSQL simple, despite this database&amp;#39;s powerful nature. Nowadays it is possible to get PostgreSQL as an application package through many operating-system&amp;#39;s default package manager with ease.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;PostgreSQL&amp;#39;s Supported Data Types&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;bigint:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;signed eight-byte integer&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;bigserial:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;autoincrementing eight-byte integer&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;bit [(n)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;fixed-length bit string&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;bit varying [(n)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;variable-length bit string&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;boolean:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;logical Boolean (true/false)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;box:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;rectangular box on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;bytea:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;binary data (&amp;quot;byte array&amp;quot;)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;character varying [(n)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;variable-length character string&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;character [(n)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;fixed-length character string&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;cidr:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;IPv4 or IPv6 network address&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;circle:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;circle on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;date:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;calendar date (year, month, day)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;double precision:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;double precision floating-point number (8 bytes)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;inet:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;IPv4 or IPv6 host address&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;integer:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;signed four-byte integer&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;interval [fields] [(p)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;time span&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;line:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;infinite line on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;lseg:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;line segment on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;macaddr:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;MAC (Media Access Control) address&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;money:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;currency amount&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;numeric [(p, s)]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;exact numeric of selectable precision&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;path:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;geometric path on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;point:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;geometric point on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;polygon:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;closed geometric path on a plane&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;real:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;single precision floating-point number (4 bytes)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;smallint:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;signed two-byte integer&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;serial:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;autoincrementing four-byte integer&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;text:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;variable-length character string&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;time [(p)] [without time zone]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;time of day (no time zone)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;time [(p)] with time zone:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;time of day, including time zone&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;timestamp [(p)] [without time zone]:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;date and time (no time zone)&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;timestamp [(p)] with time zone:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;date and time, including time zone&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;tsquery:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;text search query&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;tsvector:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;text search document&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;txid_snapshot:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;user-level transaction ID snapshot&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;uuid:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;universally unique identifier&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;xml:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;XML data&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Advantages of PostgreSQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;An open-source SQL standard compliant RDBMS:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;PostgreSQL is open-source and free, yet a very powerful relational database management system.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Strong community:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;PostgreSQL is supported by a devoted and experienced community which can be accessed through knowledge-bases and Q&amp;amp;A sites 24/7 for free.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Strong third-party support:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Regardless of the extremely advanced features, PostgreSQL is adorned with many great and open-source third-party tools for designing, managing and using the management system.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Extensible:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;It is possible to extend PostgreSQL programmatically with stored procedures, like an advanced RDBMS should be.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Objective:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;PostgreSQL is not just a relational database management system but an objective one - with support for nesting, and more.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;Disadvantages of PostgreSQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Performance:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;For simple &lt;em&gt;read&lt;/em&gt;-heavy operations, PostgreSQL can be an over-kill and might appear less performant than the counterparts, such as MySQL.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Popularity:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Given the nature of this tool, it lacks behind in terms of popularity, despite the very large amount of deployments - which might affect how easy it might be possible to get support.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Hosting:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Due to above mentioned factors, it is harder to come by hosts or service providers that offer managed PostgreSQL instances. &lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When To Use PostgreSQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Data integrity:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;When reliability and data integrity are an absolute necessity without excuses, PostgreSQL is the better choice.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Complex, custom procedures:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;If you require your database to perform custom procedures, PostgreSQL, being extensible, is the better choice.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Integration:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;In the future, if there is a chance of necessity arising for migrating the entire database system to a propriety (e.g. Oracle) solution, PostgreSQL will be the most compliant and easy to handle base for the switch. &lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Complex designs:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Compared to other open-source and free RDBMS implementations, for complex database designs, PostgreSQL offers the most in terms of functionality and possibilities without giving up on other valuable assets.&lt;/p&gt;&#x000A;&#x000A;&lt;h3&gt;When Not To Use PostgreSQL&lt;/h3&gt;&#x000A;&#x000A;&lt;hr&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Speed:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;If all you require is fast &lt;em&gt;read&lt;/em&gt; operations, PostgreSQL is not the tool to go for.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Simple set ups:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Unless you require absolute data integrity, ACID compliance or complex designs, PostgreSQL can be an over-kill for simple set-ups.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;&lt;li&gt;&lt;strong&gt;Replication:&lt;/strong&gt;&lt;br&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;&#x000A;&lt;p&gt;Unless you are willing to spend the time, energy and resources, achieving replication with MySQL might be simpler for those who lack the database and system administration experience.&lt;/p&gt;&#x000A;&#x000A;&lt;div class="author"&gt;Submitted by: &lt;a&#x000A;href="https://twitter.com/ostezer"&gt;O.S. Tezer&lt;/a&gt;&lt;/div&gt;' name='description'>
+<meta content='["MySQL", "Miscellaneous", "PostgreSQL", "MariaDB"]' name='keywords'>
+
+
+<link href="/assets/community/application-3793d75140d8a2b4c75b92b0b9eab9c2.css" media="screen" rel="stylesheet" type="text/css" />
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="uslVwcumSglBOKpyO08EntgI6B3Oc0SESxaTK1z7YoI=" name="csrf-token" />
+<script type="text/javascript" src="//use.typekit.net/izu1uqu.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script>
+  //<![CDATA[
+    (function() {
+      var config = {
+        kitId: 'mwy0yxy',
+        scriptTimeout: 3000
+      };
+      var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+    })();
+    
+    var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', 'UA-26573244-1']);
+     _gaq.push(['_trackPageview']);
+    
+     (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+    
+     /* <![CDATA[ */
+     var google_conversion_id = 1010666955;
+     var google_conversion_language = "en";
+     var google_conversion_format = "3";
+     var google_conversion_color = "ffffff";
+     var google_conversion_label = "g5d3CM2C9QIQy5v24QM";
+     var google_conversion_value = 0;
+     /* ]]> */
+  //]]>
+</script>
+</head>
+<body class='community'>
+<header>
+	<div class="wrapper">
+
+    <a href="/" class="logo"></a>
+
+      <div id="entrance">
+        <a href="https://cloud.digitalocean.com/registrations/new" class="button" id="sign-up">Sign Up</a>
+        <a href="https://cloud.digitalocean.com/login" class="button" id="log-in">Log In</a>
+      </div>
+
+    <nav>
+      <ul>
+        <li><a href="/community/" class="community">Community</a></li>
+        <li><a href="/community/articles">Tutorials</a></li>
+        <li><a href="/community/questions">Questions</a></li>
+        <li><a href="/community/projects">Projects</a></li>
+        <li><a href="/community/tags">Explore</a></li>
+        <li><a href="http://webchat.freenode.net/?channels=digitalocean&amp;uio=d4">IRC</a></li>
+      </ul>
+    </nav>
+
+    <form accept-charset="UTF-8" action="/community/search" data-remote="true" id="search" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="uslVwcumSglBOKpyO08EntgI6B3Oc0SESxaTK1z7YoI=" /></div>
+      <input type="text" name="search[query]" id="search_query" placeholder="Search the Community" value="">
+
+      <button type="submit" class="icon-btn">
+        <span class="icon-arrow-down"></span>
+      </button>
+</form>  </div>
+</header>
+<div class='tutorial-single wrapper'>
+
+<div id="tutorial-wrapper">
+  <div id="table-of-contents">
+  <h3 id="toc-trigger">
+    <a href="#">
+    Contents
+    <span class="icon-navicon"></span>
+    </a>
+  </h3>
+  </div>
+
+  <div id="slim-sidebar">
+    <div class="big-upvote"></div>
+    <p class="author"></p>
+    <p class="date">February 21, 2014</p>
+    <span class="difficulty-level beginner">Beginner</span>
+  </div>
+
+  <div class="slim-body" id="tutorial-body">
+  <h1>SQLite vs MySQL vs PostgreSQL: A Comparison Of Relational Database Management Systems</h1>
+    <div id="tags">
+      <span>Tagged In: </span>
+      <a href="/community/tags/mysql">My Sql</a>, <a href="/community/tags/miscellaneous">Miscellaneous</a>, <a href="/community/tags/postgresql">Postgre Sql</a>, <a href="/community/tags/mariadb">Maria Db</a>
+    </div>
+
+  <div class="tutorial-content">
+    <h3>Introduction</h3>
+
+<hr>
+
+<p>Relational databases have been in use for a long time. They became popular thanks to management systems that implement the relational model extremely well, which has proven to be a great way to work with data [especially for mission-critical applications].</p>
+
+<p>In this DigitalOcean article, we are going to try to understand the core differences of some of the most commonly used and popular relational database management systems (RDBMS). We will explore their fundamental differences in terms of features and functionality, how they work, and when one excels over the other in order to help developers with choosing a RDBMS.</p>
+
+<h2>Glossary</h2>
+
+<hr>
+
+<h3>1. Database Management Systems</h3>
+
+<hr>
+
+<ol>
+<li>Relational Database Management Systems</li>
+<li>Relations And Data Types</li>
+<li>Popular And Important Relational Databases</li>
+</ol>
+
+<h3>2. SQLite</h3>
+
+<hr>
+
+<ol>
+<li>SQLite&#39;s Supported Data Types</li>
+<li>Advantages of SQLite</li>
+<li>Disadvantages of SQLite</li>
+<li>When To Use SQLite</li>
+<li>When Not To Use SQLite</li>
+</ol>
+
+<h3>3. MySQL</h3>
+
+<hr>
+
+<ol>
+<li>MySQL&#39;s Supported Data Types</li>
+<li>Advantages of MySQL</li>
+<li>Disadvantages of MySQL</li>
+<li>When To Use MySQL</li>
+<li>When Not To Use MySQL</li>
+</ol>
+
+<h3>4. PostgreSQL</h3>
+
+<hr>
+
+<ol>
+<li>PostgreSQL&#39;s Supported Data Types</li>
+<li>Advantages of PostgreSQL</li>
+<li>Disadvantages of PostgreSQL</li>
+<li>When To Use PostgreSQL</li>
+<li>When Not To Use PostgreSQL</li>
+</ol>
+
+<h2>Database Management Systems</h2>
+
+<hr>
+
+<p>Databases are logically modelled storage spaces for all kinds of different information (data). Each database, other than schema-less ones, have a model, which provide structure for the data being dealt with. Database management systems are applications (or libraries) which manage databases of various shapes, sizes, and sorts.</p>
+
+<p><strong>Note:</strong> To learn more about Database Management Systems, check out our article: <a href="http://link_to_10_1_understanding_databases">Understanding Databases</a>.</p>
+
+<h3>Relational Database Management Systems</h3>
+
+<hr>
+
+<p>Relational Database Systems implement the relational model to work with the data. Relational model shapes whatever information to be stored by defining them as related entities with attributes across tables (i.e. schemas).</p>
+
+<p>These type of database management systems require structures (e.g. a table) to be defined in order to contain and work with the data. With tables, each column (e.g. attribute) holds a different type (e.g. data type) of information. Each record in the database, uniquely identified with <em>keys</em>, translates to a row that belongs to a table, with each row&#39;s series of attributes being represented as the columns of a table -- all related together, as defined within the relational model.</p>
+
+<h3>Relations And Data Types</h3>
+
+<hr>
+
+<p>Relations can be considered as mathematical sets that contain series of attributes which collectively represent the database and information being kept. This type of identification and collection method allow relational databases to work the way they do.</p>
+
+<p>When defining a table to insert records, each element forming a record (i.e. attribute) must match the defined <em>data type</em> (e.g. an integer, a date etc.). Different relational database management systems implement different data types -- which are not always directly interchangeable.</p>
+
+<p>Working with and through constraints, like the one we have just explained, is common with relational databases. In fact, constraints form the core of the relations.</p>
+
+<p><strong>Note:</strong> If you need to work with truly unrelated, randomly represented information (e.g. a document), you might be interested in using a NoSQL (schema-less database). If you would like to learn more about them, check out our article <a href="http://link_to_nosql_comparison_10_3">A Comparison Of NoSQL Database Management Systems</a>.</p>
+
+<h3>Popular And Important Relational Databases</h3>
+
+<hr>
+
+<p>In this article, we are going to introduce three major and important open-source relational database management systems that have helped to shape the world of application development.</p>
+
+<ul>
+<li><strong>SQLite:</strong><br></li>
+</ul>
+
+<p>A very powerful, embedded relational database management system. </p>
+
+<ul>
+<li><strong>MySQL:</strong><br></li>
+</ul>
+
+<p>The most popular and commonly used RDBMS.</p>
+
+<ul>
+<li><strong>PostgreSQL:</strong><br></li>
+</ul>
+
+<p>The most advanced, SQL-compliant and open-source objective-RDBMS.</p>
+
+<p><strong>Note:</strong> Open-source applications almost always come with the freedom to use any way desired. Most of the time freedom to fork the project (therefore use the code) to create something new is also permitted. If you are interested in DBMSs, you might want to check out some forked projects, based on these popular ones, such as the <a href="https://mariadb.org/">MariaDB</a>.</p>
+
+<h2>SQLite</h2>
+
+<hr>
+
+<p>SQLite is an amazing library that gets embedded inside the application that makes use of. As a self-contained, file-based database, SQLite offers an amazing set of tools to handle all sorts of data with much less constraint and ease compared to hosted, process based (server) relational databases.</p>
+
+<p>When an application uses SQLite, the integration works with functional and direct calls made to a file holding the data (i.e. SQLite database) instead of communicating through an interface of sorts (i.e. ports, sockets). This makes SQLite extremely fast and efficient, and also powerful thanks to the library&#39;s underlying technology.</p>
+
+<h3>SQLite&#39;s Supported Data Types</h3>
+
+<hr>
+
+<ul>
+<li><strong>NULL:</strong><br></li>
+</ul>
+
+<p>NULL value.</p>
+
+<ul>
+<li><strong>INTEGER:</strong><br></li>
+</ul>
+
+<p>Signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.</p>
+
+<ul>
+<li><strong>REAL:</strong><br></li>
+</ul>
+
+<p>Floating point value, stored as an 8-byte IEEE floating point number.</p>
+
+<ul>
+<li><strong>TEXT:</strong><br></li>
+</ul>
+
+<p>Text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).</p>
+
+<ul>
+<li><strong>BLOB:</strong><br></li>
+</ul>
+
+<p>A blob of data, stored exactly as it was input.</p>
+
+<p><strong>Note:</strong> To learn more about SQLite&#39;s data types and SQLite type affinity, check out the <a href="http://www.sqlite.org/datatype3.html">official documentation</a> on the subject.</p>
+
+<h3>Advantages of SQLite</h3>
+
+<hr>
+
+<ul>
+<li><strong>File based:</strong><br></li>
+</ul>
+
+<p>The entire database consists of a single file on the disk, which makes it extremely portable.</p>
+
+<ul>
+<li><strong>Standards-aware:</strong><br></li>
+</ul>
+
+<p>Although it might appear like a &quot;simple&quot; DB implementation, SQLite uses SQL. It has some features omitted (<code>RIGHT OUTER JOIN</code> or <code>FOR EACH STATEMENT</code>), however, some additional ones are baked in.</p>
+
+<ul>
+<li><strong>Great for developing and even testing:</strong><br></li>
+</ul>
+
+<p>During the development phase of most applications, for a majority of people it is extremely likely to need a solution that can scale for concurrency. SQLite, with its rich feature base, can offer more than what is needed for development with the simplicity of working with a single file and a linked C based library.</p>
+
+<h3>Disadvantages of SQLite</h3>
+
+<hr>
+
+<ul>
+<li><strong>No user management:</strong><br></li>
+</ul>
+
+<p>Advanced databases come with the support for users, i.e. managed connections with set access privileges to the database and tables. Given the purpose and nature of SQLite (no higher-levels of multi-client concurrency), this feature does not exist.</p>
+
+<ul>
+<li><strong>Lack of possibility to tinker with for additional performance:</strong><br></li>
+</ul>
+
+<p>Again by design, SQLite is not possible to tinker with to obtain a great deal of additional performance. The library is simple to tune and simple to use. Since it is not complicated, it is technically not possible to make it more performant than it already, amazingly is.</p>
+
+<h3>When To Use SQLite</h3>
+
+<hr>
+
+<ul>
+<li><strong>Embedded applications:</strong><br></li>
+</ul>
+
+<p>All applications that need portability, that do not require expansion, e.g. single-user local applications, mobile applications or games.</p>
+
+<ul>
+<li><strong>Disk access replacement:</strong><br></li>
+</ul>
+
+<p>In many cases, applications that need to read/write files to disk directly can benefit from switching to SQLite for additional functionality and simplicity that comes from using the <em>Structured Query Language</em> (SQL).</p>
+
+<ul>
+<li><strong>Testing:</strong><br></li>
+</ul>
+
+<p>It is an overkill for a large portion of applications to use an additional process for testing the business-logic (i.e. the application&#39;s main purpose: functionality). </p>
+
+<h3>When Not To Use SQLite</h3>
+
+<hr>
+
+<ul>
+<li><strong>Multi-user applications:</strong><br></li>
+</ul>
+
+<p>If you are working on an application whereby multiple clients need to access and use the same database, a fully-featured RDBM (e.g. MySQL) is probably better to choose over SQLite.</p>
+
+<ul>
+<li><strong>Applications requiring high write volumes:</strong><br></li>
+</ul>
+
+<p>One of the limitations of SQLite is the <em>write</em> operations. This DBMS allows only one single write*operating to take place at any given time, hence allowing a limited throughput.</p>
+
+<h2>MySQL</h2>
+
+<hr>
+
+<p>MySQL is the most popular one of all the large-scale database servers. It is a feature rich, open-source product that powers a lot of web-sites and applications online. Getting started with MySQL is relatively easy and developers have access to a massive array of information regarding the database on the internet.</p>
+
+<p><strong>Note:</strong> It should be stated that given the popularity of the product, there are a lot of third-party applications, tools and integrated libraries which help greatly with many aspects of working with this RDBMS.</p>
+
+<p>Despite not trying to implement the full SQL standard, MySQL offers a lot of functionality to the users. As a stand-alone database server, applications talk to MySQL daemon process to access the database itself -- unlike SQLite. </p>
+
+<h3>MySQL&#39;s Supported Data Types</h3>
+
+<hr>
+
+<ul>
+<li><strong>TINYINT:</strong><br></li>
+</ul>
+
+<p>A very small integer.</p>
+
+<ul>
+<li><strong>SMALLINT:</strong><br></li>
+</ul>
+
+<p>A small integer.</p>
+
+<ul>
+<li><strong>MEDIUMINT:</strong><br></li>
+</ul>
+
+<p>A medium-size integer.</p>
+
+<ul>
+<li><strong>INT or INTEGER:</strong><br></li>
+</ul>
+
+<p>A normal-size integer.</p>
+
+<ul>
+<li><strong>BIGINT:</strong><br></li>
+</ul>
+
+<p>A large integer.</p>
+
+<ul>
+<li><strong>FLOAT:</strong><br></li>
+</ul>
+
+<p>A small (single-precision) floating-point number. Cannot be unsigned.</p>
+
+<ul>
+<li><strong>DOUBLE, DOUBLE PRECISION, REAL:</strong><br></li>
+</ul>
+
+<p>A normal-size (double-precision) floating-point number. Cannot be unsigned.</p>
+
+<ul>
+<li><strong>DECIMAL, NUMERIC:</strong><br></li>
+</ul>
+
+<p>An unpacked floating-point number. Cannot be unsigned.</p>
+
+<ul>
+<li><strong>DATE:</strong><br></li>
+</ul>
+
+<p>A date.</p>
+
+<ul>
+<li><strong>DATETIME:</strong><br></li>
+</ul>
+
+<p>A date and time combination.</p>
+
+<ul>
+<li><strong>TIMESTAMP:</strong><br></li>
+</ul>
+
+<p>A timestamp.</p>
+
+<ul>
+<li><strong>TIME:</strong><br></li>
+</ul>
+
+<p>A time.</p>
+
+<ul>
+<li><strong>YEAR:</strong><br></li>
+</ul>
+
+<p>A year in 2- or 4- digit formats (default is 4-digit).</p>
+
+<ul>
+<li><strong>CHAR:</strong><br></li>
+</ul>
+
+<p>A fixed-length string that is always right-padded with spaces to the specified length when stored.</p>
+
+<ul>
+<li><strong>VARCHAR:</strong><br></li>
+</ul>
+
+<p>A variable-length string.</p>
+
+<ul>
+<li><strong>TINYBLOB, TINYTEXT:</strong><br></li>
+</ul>
+
+<p>A BLOB or TEXT column with a maximum length of 255 (2^8 - 1) characters.</p>
+
+<ul>
+<li><strong>BLOB, TEXT:</strong><br></li>
+</ul>
+
+<p>A BLOB or TEXT column with a maximum length of 65535 (2^16 - 1) characters.</p>
+
+<ul>
+<li><strong>MEDIUMBLOB, MEDIUMTEXT:</strong><br></li>
+</ul>
+
+<p>A BLOB or TEXT column with a maximum length of 16777215 (2^24 - 1) characters.</p>
+
+<ul>
+<li><strong>LONGBLOB, LONGTEXT:</strong><br></li>
+</ul>
+
+<p>A BLOB or TEXT column with a maximum length of 4294967295 (2^32 - 1) characters.</p>
+
+<ul>
+<li><strong>ENUM:</strong><br></li>
+</ul>
+
+<p>An enumeration.</p>
+
+<ul>
+<li><strong>SET:</strong><br></li>
+</ul>
+
+<p>A set.</p>
+
+<h3>Advantages of MySQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Easy to work with:</strong><br></li>
+</ul>
+
+<p>MySQL can be installed very easily. Third-party tools, including visual ones (i.e. GUIs) make it extremely simple to get started with the database.</p>
+
+<ul>
+<li><strong>Feature rich:</strong><br></li>
+</ul>
+
+<p>MySQL supports a lot of the SQL functionality that is expected from a RDBMS -- either directly or indirectly.</p>
+
+<ul>
+<li><strong>Secure:</strong><br></li>
+</ul>
+
+<p>A lot of security features, some rather advanced, are built in MySQL.</p>
+
+<ul>
+<li><strong>Scalable and powerful:</strong><br></li>
+</ul>
+
+<p>MySQL can handle <em>a lot</em> of data and furthermore it can be used &quot;at scale&quot;, if needed be.</p>
+
+<ul>
+<li><strong>Speedy:</strong><br></li>
+</ul>
+
+<p>Giving up some standards allows MySQL to work very efficiently and cut corners, thus providing speed gains.</p>
+
+<h3>Disadvantages of MySQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Known limitations:</strong><br></li>
+</ul>
+
+<p>By design, MySQL does not intend to do everything and it comes with functional limitations that some state-of-the-art applications might require.</p>
+
+<ul>
+<li><strong>Reliability issues:</strong><br></li>
+</ul>
+
+<p>The way certain functionality gets handled with MySQL (e.g. references, transactions, auditing etc.) renders it a little-less reliable compared to some other RDBMSs.</p>
+
+<ul>
+<li><strong>Stagnated development:</strong><br></li>
+</ul>
+
+<p>Although MySQL is still technical an open-source product, there are complaints regarding the development process since its acquisition. However, it should be noted that there are some MySQL-based, fully-integrated databases that add value on top of the standard MySQL installations (e.g. MariaDB).</p>
+
+<h3>When To Use MySQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Distributed operations:</strong><br></li>
+</ul>
+
+<p>When you need more than what SQLite can offer, including MySQL to your deployment stack, just like any stand-alone database server, brings a lot of operational freedom together with some advanced features.</p>
+
+<ul>
+<li><strong>High security:</strong><br></li>
+</ul>
+
+<p>MySQL&#39;s security features provide reliable protection for data-access (and use) in a simple way.</p>
+
+<ul>
+<li><strong>Web-sites and web-applications:</strong><br></li>
+</ul>
+
+<p>A great majority of web-sites (and web-applications) can simply work on MySQL despite the constraints. This flexible and somewhat scalable tool is easy to use and easy to manage -- which proves very helpful in the long run.</p>
+
+<ul>
+<li><strong>Custom solutions:</strong><br></li>
+</ul>
+
+<p>If you are working on a highly specific and extremely custom solution, MySQL can tag along easily and go by your rules thanks to its rich configuration settings and operation modes.</p>
+
+<h3>When Not To Use MySQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>SQL compliance:</strong><br></li>
+</ul>
+
+<p>Since MySQL does not [try to] implement the full SQL standard, this tool is not completely SQL compliant. If you might need integration with such RDBMSs, switching from MySQL will not be easy.</p>
+
+<ul>
+<li><strong>Concurrency:</strong><br></li>
+</ul>
+
+<p>Even though MySQL and some storage engines perform really well with <em>read</em> operations, concurrent <em>read-writes</em> can be problematic.</p>
+
+<ul>
+<li><strong>Lack of features:</strong><br></li>
+</ul>
+
+<p>Again, depending on the choice of the database-engine, MySQL can lack certain features, such as the full-text search.  </p>
+
+<h2>PostgreSQL</h2>
+
+<hr>
+
+<p>PostgreSQL is <em>the</em> advanced, open-source [object]-relational database management system which has the main goal of being standards-compliant and extensible. PostgreSQL, or Postgres, tries to adopt the ANSI/ISO SQL standards together with the revisions. </p>
+
+<p>Compared to other RDBMSs, PostgreSQL differs itself with its support for highly required and integral object-oriented and/or relational database functionality, such as the complete support for reliable transactions, i.e. Atomicity, Consistency, Isolation, Durability (ACID).</p>
+
+<p>Due to the powerful underlying technology, Postgres is extremely capable of handling many tasks very efficiently. Support for concurrency is achieved without read locks thanks to the implementation of Multiversion Concurrency Control (MVCC), which also ensures the ACID compliance.</p>
+
+<p>PostgreSQL is highly programmable, and therefore extendible, with custom procedures that are called &quot;stored procedures&quot;. These functions can be created to simplify the execution of repeated, complex and often required database operations.</p>
+
+<p>Although this DBMS does not have the popularity of MySQL, there are many amazing third-party tools and libraries that are designed to make working with PostgreSQL simple, despite this database&#39;s powerful nature. Nowadays it is possible to get PostgreSQL as an application package through many operating-system&#39;s default package manager with ease.</p>
+
+<h3>PostgreSQL&#39;s Supported Data Types</h3>
+
+<hr>
+
+<ul>
+<li><strong>bigint:</strong><br></li>
+</ul>
+
+<p>signed eight-byte integer</p>
+
+<ul>
+<li><strong>bigserial:</strong><br></li>
+</ul>
+
+<p>autoincrementing eight-byte integer</p>
+
+<ul>
+<li><strong>bit [(n)]:</strong><br></li>
+</ul>
+
+<p>fixed-length bit string</p>
+
+<ul>
+<li><strong>bit varying [(n)]:</strong><br></li>
+</ul>
+
+<p>variable-length bit string</p>
+
+<ul>
+<li><strong>boolean:</strong><br></li>
+</ul>
+
+<p>logical Boolean (true/false)</p>
+
+<ul>
+<li><strong>box:</strong><br></li>
+</ul>
+
+<p>rectangular box on a plane</p>
+
+<ul>
+<li><strong>bytea:</strong><br></li>
+</ul>
+
+<p>binary data (&quot;byte array&quot;)</p>
+
+<ul>
+<li><strong>character varying [(n)]:</strong><br></li>
+</ul>
+
+<p>variable-length character string</p>
+
+<ul>
+<li><strong>character [(n)]:</strong><br></li>
+</ul>
+
+<p>fixed-length character string</p>
+
+<ul>
+<li><strong>cidr:</strong><br></li>
+</ul>
+
+<p>IPv4 or IPv6 network address</p>
+
+<ul>
+<li><strong>circle:</strong><br></li>
+</ul>
+
+<p>circle on a plane</p>
+
+<ul>
+<li><strong>date:</strong><br></li>
+</ul>
+
+<p>calendar date (year, month, day)</p>
+
+<ul>
+<li><strong>double precision:</strong><br></li>
+</ul>
+
+<p>double precision floating-point number (8 bytes)</p>
+
+<ul>
+<li><strong>inet:</strong><br></li>
+</ul>
+
+<p>IPv4 or IPv6 host address</p>
+
+<ul>
+<li><strong>integer:</strong><br></li>
+</ul>
+
+<p>signed four-byte integer</p>
+
+<ul>
+<li><strong>interval [fields] [(p)]:</strong><br></li>
+</ul>
+
+<p>time span</p>
+
+<ul>
+<li><strong>line:</strong><br></li>
+</ul>
+
+<p>infinite line on a plane</p>
+
+<ul>
+<li><strong>lseg:</strong><br></li>
+</ul>
+
+<p>line segment on a plane</p>
+
+<ul>
+<li><strong>macaddr:</strong><br></li>
+</ul>
+
+<p>MAC (Media Access Control) address</p>
+
+<ul>
+<li><strong>money:</strong><br></li>
+</ul>
+
+<p>currency amount</p>
+
+<ul>
+<li><strong>numeric [(p, s)]:</strong><br></li>
+</ul>
+
+<p>exact numeric of selectable precision</p>
+
+<ul>
+<li><strong>path:</strong><br></li>
+</ul>
+
+<p>geometric path on a plane</p>
+
+<ul>
+<li><strong>point:</strong><br></li>
+</ul>
+
+<p>geometric point on a plane</p>
+
+<ul>
+<li><strong>polygon:</strong><br></li>
+</ul>
+
+<p>closed geometric path on a plane</p>
+
+<ul>
+<li><strong>real:</strong><br></li>
+</ul>
+
+<p>single precision floating-point number (4 bytes)</p>
+
+<ul>
+<li><strong>smallint:</strong><br></li>
+</ul>
+
+<p>signed two-byte integer</p>
+
+<ul>
+<li><strong>serial:</strong><br></li>
+</ul>
+
+<p>autoincrementing four-byte integer</p>
+
+<ul>
+<li><strong>text:</strong><br></li>
+</ul>
+
+<p>variable-length character string</p>
+
+<ul>
+<li><strong>time [(p)] [without time zone]:</strong><br></li>
+</ul>
+
+<p>time of day (no time zone)</p>
+
+<ul>
+<li><strong>time [(p)] with time zone:</strong><br></li>
+</ul>
+
+<p>time of day, including time zone</p>
+
+<ul>
+<li><strong>timestamp [(p)] [without time zone]:</strong><br></li>
+</ul>
+
+<p>date and time (no time zone)</p>
+
+<ul>
+<li><strong>timestamp [(p)] with time zone:</strong><br></li>
+</ul>
+
+<p>date and time, including time zone</p>
+
+<ul>
+<li><strong>tsquery:</strong><br></li>
+</ul>
+
+<p>text search query</p>
+
+<ul>
+<li><strong>tsvector:</strong><br></li>
+</ul>
+
+<p>text search document</p>
+
+<ul>
+<li><strong>txid_snapshot:</strong><br></li>
+</ul>
+
+<p>user-level transaction ID snapshot</p>
+
+<ul>
+<li><strong>uuid:</strong><br></li>
+</ul>
+
+<p>universally unique identifier</p>
+
+<ul>
+<li><strong>xml:</strong><br></li>
+</ul>
+
+<p>XML data</p>
+
+<h3>Advantages of PostgreSQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>An open-source SQL standard compliant RDBMS:</strong><br></li>
+</ul>
+
+<p>PostgreSQL is open-source and free, yet a very powerful relational database management system.</p>
+
+<ul>
+<li><strong>Strong community:</strong><br></li>
+</ul>
+
+<p>PostgreSQL is supported by a devoted and experienced community which can be accessed through knowledge-bases and Q&amp;A sites 24/7 for free.</p>
+
+<ul>
+<li><strong>Strong third-party support:</strong><br></li>
+</ul>
+
+<p>Regardless of the extremely advanced features, PostgreSQL is adorned with many great and open-source third-party tools for designing, managing and using the management system.</p>
+
+<ul>
+<li><strong>Extensible:</strong><br></li>
+</ul>
+
+<p>It is possible to extend PostgreSQL programmatically with stored procedures, like an advanced RDBMS should be.</p>
+
+<ul>
+<li><strong>Objective:</strong><br></li>
+</ul>
+
+<p>PostgreSQL is not just a relational database management system but an objective one - with support for nesting, and more.</p>
+
+<h3>Disadvantages of PostgreSQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Performance:</strong><br></li>
+</ul>
+
+<p>For simple <em>read</em>-heavy operations, PostgreSQL can be an over-kill and might appear less performant than the counterparts, such as MySQL.</p>
+
+<ul>
+<li><strong>Popularity:</strong><br></li>
+</ul>
+
+<p>Given the nature of this tool, it lacks behind in terms of popularity, despite the very large amount of deployments - which might affect how easy it might be possible to get support.</p>
+
+<ul>
+<li><strong>Hosting:</strong><br></li>
+</ul>
+
+<p>Due to above mentioned factors, it is harder to come by hosts or service providers that offer managed PostgreSQL instances. </p>
+
+<h3>When To Use PostgreSQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Data integrity:</strong><br></li>
+</ul>
+
+<p>When reliability and data integrity are an absolute necessity without excuses, PostgreSQL is the better choice.</p>
+
+<ul>
+<li><strong>Complex, custom procedures:</strong><br></li>
+</ul>
+
+<p>If you require your database to perform custom procedures, PostgreSQL, being extensible, is the better choice.</p>
+
+<ul>
+<li><strong>Integration:</strong><br></li>
+</ul>
+
+<p>In the future, if there is a chance of necessity arising for migrating the entire database system to a propriety (e.g. Oracle) solution, PostgreSQL will be the most compliant and easy to handle base for the switch. </p>
+
+<ul>
+<li><strong>Complex designs:</strong><br></li>
+</ul>
+
+<p>Compared to other open-source and free RDBMS implementations, for complex database designs, PostgreSQL offers the most in terms of functionality and possibilities without giving up on other valuable assets.</p>
+
+<h3>When Not To Use PostgreSQL</h3>
+
+<hr>
+
+<ul>
+<li><strong>Speed:</strong><br></li>
+</ul>
+
+<p>If all you require is fast <em>read</em> operations, PostgreSQL is not the tool to go for.</p>
+
+<ul>
+<li><strong>Simple set ups:</strong><br></li>
+</ul>
+
+<p>Unless you require absolute data integrity, ACID compliance or complex designs, PostgreSQL can be an over-kill for simple set-ups.</p>
+
+<ul>
+<li><strong>Replication:</strong><br></li>
+</ul>
+
+<p>Unless you are willing to spend the time, energy and resources, achieving replication with MySQL might be simpler for those who lack the database and system administration experience.</p>
+
+<div class="author">Submitted by: <a
+href="https://twitter.com/ostezer">O.S. Tezer</a></div>
+
+  </div>
+
+  <br>
+<div class='do-form tutorial-call-action' id='register'>
+<div class='form-wrap'>
+<h2><strong>Try this tutorial</strong> on an SSD cloud server.</h2>
+<p class="copy">Includes 512MB RAM, 20GB SSD Disk, and 1TB Transfer for
+<strong>$5/mo</strong>! <a class="learn-more" href="https://www.digitalocean.com/pricing">Learn more</a></p>
+<form accept-charset="UTF-8" action="https://cloud.digitalocean.com/registrations" class="form-inline" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="uslVwcumSglBOKpyO08EntgI6B3Oc0SESxaTK1z7YoI=" /></div><fieldset>
+<input id="user_signup_form_name" name="user[signup_form_name]" type="hidden" value="articles" />
+  <fieldset id="register">
+    <legend>Create an account or login:</legend>
+
+    <div class="field">
+      <input id="user_email" name="user[email]" placeholder="Email" required="required" type="text" />
+    </div>
+
+    <div class="field">
+      <input data-toggle="tooltip" id="user_password" name="user[password]" placeholder="Password" rel="tooltip-focus" required="required" title="Must be at least 6 characters long and it must contain at least one letter" type="password" />
+    </div>
+  </fieldset>
+
+<div class='field'>
+<input class="button" name="commit" type="submit" value="Get Started!" />
+</div>
+</fieldset>
+</form>
+
+</div>
+</div>
+
+
+  <div id="sharing-is-caring">
+  <h2>Share this Tutorial</h2>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+  <div id="fb-root">
+    <div class="fb-link" data-href="https://www.digitalocean.com/community/articles/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+  </div>
+  <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+  <a href="https://news.ycombinator.com/submit" class="hn-button" data-count="horizontal">Vote on Hacker News</a>
+</div>
+
+
+
+
+  <div id="comment-wrapper" class="tutorial-comments">
+    <h4>6 Comments</h4>
+    <a href="/community/get-paid-to-write" class="write">
+      <span class="icon-edit"></span> Write Tutorial
+</a>    <div>
+  <ul class="comment-responses ">
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/9129a4e09b7eed814181712c7b054a13?default=identicon" width="80" />
+  <a class="full-name">adsfas</a>
+  <span id="1395281007" class="time-ago" title="2014-03-20 02:03:27 UTC">about 8 hours</span>
+  <p class="comment-copy">nosql comparison link is broken</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/8153304eaa161ffbe49d77658efe9925?default=identicon" width="80" />
+  <a class="full-name">Foo</a>
+  <span id="1395283188" class="time-ago" title="2014-03-20 02:39:48 UTC">about 7 hours</span>
+  <p class="comment-copy">I question the claim that MySQL is "The most popular and commonly used RDBMS".  It depends on what you mean by "popular and commonly used", but SQLite is used almost everywhere these days.  I honestly don't know how to do anything on my computer or phone today that doesn't use SQLite.  It's in iOS and Android, it's in Firefox and Chrome, it's in OS X (and used by every OS X application, indirectly, and several of them directly) and Linux.  It's used by Dropbox and Skype and Lightroom and Airbus and pretty much every major software company in the world.
+
+MySQL is very popular for web apps, but SQLite is very popular for basically everything else.
+</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/87e6126fad1bdccbb81b10261ae39477?default=identicon" width="80" />
+  <a class="full-name">lucas</a>
+  <span id="1395283461" class="time-ago" title="2014-03-20 02:44:21 UTC">about 7 hours</span>
+  <p class="comment-copy">I would like to point out that the JSON and hstore datatypes in PostgreSQL aren't mentioned, and are extremely useful.</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/57441e9deecc70e423cfc25862329adb?default=identicon" width="80" />
+  <a class="full-name">anon</a>
+  <span id="1395301933" class="time-ago" title="2014-03-20 07:52:13 UTC">about 2 hours</span>
+  <p class="comment-copy">Please rename "Glossary" to "Table of Contents"</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/28d7dcf5ee6718ea6de4b077ac3159a7?default=identicon" width="80" />
+  <a class="full-name">Lauris Dzilums</a>
+  <span id="1395305960" class="time-ago" title="2014-03-20 08:59:20 UTC">about 1 hour</span>
+  <p class="comment-copy">There was an interesting poll recently. It appears that Postgres is currently more popular among developers than MySQL  http://www.databasefriends.co/2014/03/favorite-relational-database.html
+</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+      <li>
+  <img alt="Gravatar" height="80" src="https://secure.gravatar.com/avatar/bd09b64bb415475f51a978d5bcdc0643?default=identicon" width="80" />
+  <a class="full-name">valdis.veidelis+digitalocean</a>
+  <span id="1395307064" class="time-ago" title="2014-03-20 09:17:44 UTC">about 1 hour</span>
+  <p class="comment-copy">Postgres JSON data type is a huge advantage over MySQL.</p>
+  <div class="comment-actions">
+    <a href="#tutorial-comment-submit">Reply</a>
+  </div>
+</li>
+  </ul>
+</div>
+
+    <div id="tutorial-comment-submit">
+  <h4>Leave a Comment</h4>
+  <div id="signed-in">
+  </div>
+
+  <div class="comments">
+
+    <form accept-charset="UTF-8" action="/community/articles/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems/comments" class="simple_form new_comment" data-remote="true" id="new_comment" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="uslVwcumSglBOKpyO08EntgI6B3Oc0SESxaTK1z7YoI=" /></div>
+      <div class="control-group text required"><div class="controls"><textarea class="text required textarea" cols="40" id="comment_content" name="comment[content]" placeholder="Leave a comment..." rows="20">
+</textarea></div></div>
+
+        <fieldset id="register">
+    <legend>Create an account or login:</legend>
+
+    <div class="field">
+      <input id="user_email" name="user[email]" placeholder="Email" required="required" type="text" />
+    </div>
+
+    <div class="field">
+      <input data-toggle="tooltip" id="user_password" name="user[password]" placeholder="Password" rel="tooltip-focus" required="required" title="Must be at least 6 characters long and it must contain at least one letter" type="password" />
+    </div>
+  </fieldset>
+
+
+      <div class="errors" style="clear:both;"></div>
+
+      <div class="field">
+        <input id="submit-comment" name="commit" type="submit" value="Submit Comment" />      </div>
+</form>  </div>
+</div>
+
+<div class="new-comment loading">
+  <img alt="Ajax-loader" src="/assets/community/ajax-loader-338c17cb4b726875e8bd8c70442e2bc4.gif" />
+</div>
+  </div>
+  </div>
+</div>
+</div>
+<footer id="footer">
+  <div class="wrapper">
+    <div id="column-main" class="footer-column">
+      <a href="#" class="cloud-icon"></a>
+      <div id="copyright">
+
+        Copyright &copy; 2014<br>
+        DigitalOcean &trade; Inc.
+      </div>
+      <a href="http://nytm.org/made-in-nyc/" id="made-in-ny">Proudly Made in NY</a>
+
+      <div id="privacy">
+        <a href="/legal/terms/">Terms, Privacy, &amp; Copyright</a>
+        <a href="#">Security</a>
+      </div>
+
+    </div>
+
+    <div id="column-product" class="footer-column">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="/pricing/">Pricing</a></li>
+        <li><a href="/features/">Features</a></li>
+        <li><a href="/customers/">Customers</a></li>
+        <li><a href="/one-click-apps/">One-Click Apps</a></li>
+        <li><a href="https://api.digitalocean.com/">API</a></li>
+      </ul>
+    </div>
+
+    <div id="column-company" class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/company/about/">About Us</a></li>
+        <li><a href="/company/blog/">Blog</a></li>
+        <li><a href="/company/careers/">Jobs</a></li>
+        <li><a href="/company/press/">Press</a></li>
+        <li><a href="/company/logos-and-badges/">Logos &amp; Badges</a></li>
+        <li><a href="/company/events/">Events</a></li>
+        <li><a href="/company/contact/" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+
+    <div id="column-help" class="footer-column">
+      <h3>Help</h3>
+      <ul>
+        <li><a href="/help/">Knowledgebase</a></li>
+        <li><a href="/help/getting-started/">Getting Started</a></li>
+        <li><a href="http://digitalocean.uservoice.com/forums/136585-digital-ocean" target="_blank">Feedback</a></li>
+        <li><a href="/referral-program/">Referral Program</a></li>
+        <li><a href="http://www.digitaloceanstatus.com" target="_blank">Network Status</a></li>
+      </ul>
+    </div>
+
+    <div id="column-community" class="footer-column">
+      <h3>Community</h3>
+      <ul>
+        <li><a href="/community/">Dashboard</a></li>
+        <li><a href="/community/overview">Overview</a></li>
+        <li><a href="https://www.digitalocean.com/community/articles/digitalocean-community-article-suggestions-and-ideas">Tutorial Suggestions</a></li>
+        <li><a href="/community/get-paid-to-write">Get Paid to Write</a></li>
+        <li><a href="http://webchat.freenode.net/?channels=digitalocean&amp;uio=d4">IRC Chat</a></li>
+      </ul>
+    </div>
+
+    <div id="column-connect" class="footer-column">
+      <h3>Connect</h3>
+      <ul>
+        <li class="twitter"><a href="https://twitter.com/digitalocean">Twitter</a></li>
+        <li class="facebook"><a href="https://www.facebook.com/DigitalOceanCloudHosting">Facebook</a></li>
+        <li class="linkedin"><a href="http://www.linkedin.com/company/digitalocean">LinkedIn</a></li>
+        <li class="google"><a href="https://plus.google.com/+Digitalocean/posts">Google+</a></li>
+        <li class="instagram"><a href="http://instagram.com/thedigitalocean">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div id="droplet-count">
+      <span class="count">1,323,825</span> Droplets Launched
+    </div>
+  </div>
+</footer>
+</body>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:hidden;position:absolute;top:-1000px;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1010666955/?value=0&amp;label=g5d3CM2C9QIQy5v24QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<script>
+  //<![CDATA[
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  //]]>
+</script>
+<script>
+  //<![CDATA[
+    setTimeout(function(){var a=document.createElement("script");
+    var b=document.getElementsByTagName("script")[0];
+    a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0020/5850.js?"+Math.floor(new Date().getTime()/3600000);
+    a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  //]]>
+</script>
+<script src="/assets/community/application-20b2a68918be282d7183b93776748d14.js" type="text/javascript"></script>
+<script>
+  //<![CDATA[
+    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+    typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+    b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+    mixpanel.init("155e217a94fcfc75058909a4489b9c58");
+  //]]>
+</script>
+
+
+
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async=true;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async = true;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=439858199408280";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    window.___gcfg = {
+      lang: 'en-US',
+      parsetags: 'onload'
+    };
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+    var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.async=true;t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();
+  </script>
+<script>
+  //<![CDATA[
+    mixpanel.track("Page View");
+  //]]>
+</script>
+
+<script type="text/javascript">
+  (function() {
+    window._pa = window._pa || {};
+    var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+    pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/51c8920f71ca6dc47d00002f.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+  })();
+</script>
+<script type="text/javascript">
+  adroll_adv_id = "S4BPDI4QWNB57PEKEZSLIP";
+  adroll_pix_id = "4IDGVTPEAFC4TM2QKYNQ53";
+  (function () {
+  var oldonload = window.onload;
+  window.onload = function(){
+     __adroll_loaded=true;
+     var scr = document.createElement("script");
+     var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+     scr.setAttribute('async', 'true');
+     scr.type = "text/javascript";
+     scr.src = host + "/j/roundtrip.js";
+     ((document.getElementsByTagName('head') || [null])[0] ||
+      document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+     if(oldonload){oldonload()}};
+  }());
+</script>
+
+</html>
