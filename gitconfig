@@ -1,9 +1,20 @@
 [user]
 	name = Rob Desbois
 	email = rob.desbois@gmail.com
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
 [push]
 	default = simple
+
 [alias]
 	ci = commit
 	co = checkout
 	df = diff -b
+	l  = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+[core]
+	pager = less -r
