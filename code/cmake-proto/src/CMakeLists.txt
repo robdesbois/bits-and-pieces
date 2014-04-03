@@ -28,6 +28,7 @@ add_custom_target(
 	verify-src-list
 	COMMAND ${DEDUPE_SOURCE_DIR}/build-scripts/verify-src-list.sh 
 		"${CMAKE_CURRENT_SOURCE_DIR}" "${src_file_glob}"
+		"${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}"
 )
 
 # add the executable with dependency on src files and src file list verifier
