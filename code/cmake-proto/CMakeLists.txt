@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 project(DEDUPE)
 
+# required packages, e.g:
+find_package( Boost 1.44 COMPONENTS filesystem REQUIRED )
+find_package( Git 1.8 REQUIRED )
+
 # define & doc project properties; global/directory/target...
 #define_property( GLOBAL)
 
