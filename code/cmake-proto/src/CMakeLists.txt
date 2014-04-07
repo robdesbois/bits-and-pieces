@@ -22,18 +22,19 @@ execute_process(
 	OUTPUT_FILE src-list
 )
 
-# generate build target that will regenerate the source list and compare to the master list
-# this enables detection of source file list change
+
+# generate build target to check whether source list has changed since
+# build files were last generated
 add_custom_target(
-	verify-src-list
-	COMMAND ${DEDUPE_SOURCE_DIR}/build-scripts/verify-src-list.sh 
-		"${CMAKE_CURRENT_SOURCE_DIR}" "${src_file_glob}"
-		"${CMAKE_BINARY_DIR}" "${CMAKE_SOURCE_DIR}"
+	up-to-date-check
+	COMMAND ${CMAKE_SOURCE_DIR}/build-scripts/up-to-date-check.sh
+		${CMAKE_CURRENT_SOURCE_DIR} ${src_file_glob}
+	VERBATIM
 )
 
 # add the executable with dependency on src files and src file list verifier
 add_executable  (run-me ${dedupe_sources})
-add_dependencies(run-me verify-src-list)
+add_dependencies(run-me up-to-date-check)
 
 # add a library:
 # add_library(backend SHARED)
