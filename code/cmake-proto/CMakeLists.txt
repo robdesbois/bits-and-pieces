@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(DEDUPE)
 
-# required packages, e.g:
+# required packages
+# see http://cpprocks.com/using-cmake-to-build-a-cross-platform-project-with-a-boost-dependency/
 find_package( Boost 1.44 COMPONENTS filesystem REQUIRED )
 find_package( Git 1.8 REQUIRED )
 
