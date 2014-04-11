@@ -23,10 +23,12 @@ setopt AUTO_CD
 
 
 ### SETUP KEYS ###
+# note: at zsh prompt hit Ctrl+V then special key to find the code
 bindkey "^\eOC" forward-word      # Ctrl+Right
 bindkey "^\eOD" backward-word     # Ctrl+Left
 bindkey "^[[1~" beginning-of-line # Home
 bindkey "^[[4~" end-of-line       # End
+bindkey "^[[3~" delete-char       # Delete
 
 
 ### COMPLETION OPTIONS ###
