@@ -5,13 +5,14 @@ of CMake when necessary
 
 
 import argparse
+import os
 import subprocess
 import string
 
 
 BASH_COLOR_CODES = {
 	"clear":       "\033[0m",
-	"white":       "\033[0m",
+	"bold":        "\033[1m",
 	"black":       "\033[0;30m",
 	"red":         "\033[0;31m",
 	"green":       "\033[0;32m",
@@ -19,7 +20,6 @@ BASH_COLOR_CODES = {
 	"blue":        "\033[0;34m",
 	"purple":      "\033[0;35m",
 	"turquoise":   "\033[0;36m",
-	"b_white":     "\033[1m",
 	"b_black":     "\033[1;30m",
 	"b_red":       "\033[1;31m",
 	"b_green":     "\033[1;32m",
@@ -64,6 +64,18 @@ def parse_args():
 	parser = argparse.ArgumentParser(description="Build system driver unifying CMake and make")
 	parser.add_argument("source_root", help="The root directory of the source tree to build")
 
+	parser.add_argument(
+		"-f", "--force-meta-rebuild",
+		dest='force_meta_rebuild',
+		action="store_true",
+		help="Forces a meta rebuild")
+
+	parser.add_argument(
+		"-n", "--no-build",
+		dest='no_build',
+		action="store_true",
+		help="Don't perform the build; meta rebuild will still be performed if required")
+
 	parser.add_argument("--on-sourceset-change",
 		choices=["abort", "ignore", "rebuild", "ask"],
 		default="abort",
@@ -71,9 +83,9 @@ def parse_args():
 		dest='on_src_change',
 		help=colorize(
 			"Action to take when source files have been added or removed. Allowed values are "
-			"{b_white}abort{clear} (stop immediately and exit with an error), {b_white}ignore{clear} (continue as if there were no"
-			"change in sourceset), {b_white}rebuild{clear} (re-run the meta-build step to take account of new files)"
-			", or {b_white}ask{clear} (ask each time; requires interactive terminal)"))
+			"{bold}abort{clear} (stop immediately and exit with an error), {bold}ignore{clear} (continue as if there were no"
+			"change in sourceset), {bold}rebuild{clear} (re-run the meta-build step to take account of new files)"
+			", or {bold}ask{clear} (ask each time; requires interactive terminal)"))
 	
 	return parser.parse_args()
 
@@ -82,7 +94,14 @@ def main():
 	# print_colors()
 	args = parse_args()
 
-	if args.on_src_change != 'ignore' and sourceset_changed():
+	rebuild = False
+
+	if not os.path.isfile("Makefile"):
+		print( colorize("{bold}Makefile not found; will re-run meta build") )
+		rebuild = True
+	elif args.force_meta_rebuild:
+		rebuild = True
+	elif args.on_src_change != 'ignore' and sourceset_changed():
 		if args.on_src_change == 'ask':
 			args.on_src_change = ask_for_sourcset_change_action()
 
@@ -91,11 +110,26 @@ def main():
 			return 1
 
 		if args.on_src_change == 'rebuild':	
-			print( colorize("{b_green}Re-running meta build") )
-			subprocess.call(["cmake", args.source_root])
+			print( colorize("{b_green}Will re-run meta build") )
+			rebuild = True
+	
+	# create a logger process to copy logged messages to a file
+	# logger = subprocess.Popen(['tee', 'build.log'], stdin=subprocess.PIPE)
 
-	# TODO: make this NOT fail if ignoring srcset change
-	subprocess.call(["make"])
+	# run meta build if required
+	if rebuild:
+		print( colorize("{bold}Re-running meta build") )
+
+		result = subprocess.call(['cmake', args.source_root, "-DWITH_CPPUNIT=1"])#, stdout=logger.stdin, stderr=subprocess.STDOUT)
+
+		if ( result != 0 ):
+			print( colorize("{b_red}Meta-build failed; aborting") )
+			return 1
+
+	# run build if required
+	if not args.no_build:
+		print( colorize("{bold}Building...") )
+		result = subprocess.call(["make", "-j32"])#, stdout=logger.stdin, stderr=subprocess.STDOUT)
 
 	
 
