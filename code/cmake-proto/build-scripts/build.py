@@ -8,6 +8,7 @@ import argparse
 import os
 import subprocess
 import string
+import sys
 
 
 BASH_COLOR_CODES = {
@@ -76,6 +77,12 @@ def parse_args():
 		action="store_true",
 		help="Don't perform the build; meta rebuild will still be performed if required")
 
+	parser.add_argument(
+		"-p", "--paginate-output",
+		dest='paginate_output',
+		action="store_true",
+		help=colorize("Pipe output into {bold}less{clear}") )
+
 	parser.add_argument("--on-sourceset-change",
 		choices=["abort", "ignore", "rebuild", "ask"],
 		default="abort",
@@ -113,14 +120,27 @@ def main():
 			print( colorize("{b_green}Will re-run meta build") )
 			rebuild = True
 	
-	# create a logger process to copy logged messages to a file
-	# logger = subprocess.Popen(['tee', 'build.log'], stdin=subprocess.PIPE)
+	# Grab destination for logger output, creating paginator if required 
+	# *TODO* this is currently disabled as obviously with a non-interactive stdin it cannot
+	# accept user input. Unsure whether that means pagination would have to be done through
+	# some other mechanism or if there's a way to make this work with `less`...
+	if args.paginate_output:
+		print( colorize("{b_red}Pagination is currently broken; ignoring flag{clear}") )
+		# paginator      = subprocess.Popen(['less', '-R'], stdin=subprocess.PIPE)
+		# logger_out_dst = paginator.stdin
+	# else:
+		logger_out_dst = sys.stdout # None # will inherit stdout from current process
 
+	# create a logger process to copy logged messages to a file
+	logger = subprocess.Popen(['tee', 'build.log'], stdin=subprocess.PIPE, stdout=logger_out_dst)
+	
 	# run meta build if required
 	if rebuild:
 		print( colorize("{bold}Re-running meta build") )
 
-		result = subprocess.call(['cmake', args.source_root, "-DWITH_CPPUNIT=1"])#, stdout=logger.stdin, stderr=subprocess.STDOUT)
+		# (bufsize == 1) => line-buffering; the 'size' aspect only applies when >1
+		# we want line-buffering to provide line-based interleave between 
+		result = subprocess.call(['cmake', args.source_root, "-DWITH_CPPUNIT=1"], bufsize=1, stdout=logger.stdin, stderr=subprocess.STDOUT)
 
 		if ( result != 0 ):
 			print( colorize("{b_red}Meta-build failed; aborting") )
@@ -129,7 +149,8 @@ def main():
 	# run build if required
 	if not args.no_build:
 		print( colorize("{bold}Building...") )
-		result = subprocess.call(["make", "-j32"])#, stdout=logger.stdin, stderr=subprocess.STDOUT)
+		result = subprocess.call(["make", "-j1"], stdout=logger.stdin, stderr=subprocess.STDOUT)
+
 
 	
 
