@@ -16,6 +16,7 @@ alias vi=vim
 
 
 export SVN_EDITOR=vim
+export GCC_COLORS=1
 
 
 function find-code {
