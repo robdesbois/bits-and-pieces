@@ -37,7 +37,8 @@ valgrind-devel
 * google-chrome - due frequent update & slow repository pull from upstream
 * sublime text - sublimetext.com 
 * Virtual Box - virtualbox.org
-* Inconsolata font - http://www.levien.com/type/myfonts/inconsolata.html
+* Inconsolata - monospaced font for coding - http://www.levien.com/type/myfonts/inconsolata.html
+* Montserrat - readable screen font - http://www.google.com/fonts#UsePlace:use/Collection:Montserrat
 
 
 === Debug info ===
