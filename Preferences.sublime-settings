@@ -5,12 +5,13 @@
 		"*.swp",
 		"*.o"
 	],
-	"font_face": "Anonymous Pro",
-	"font_size": 11,
+	"font_face": "Inconsolata",
+	"font_size": 12,
 	"http_proxy": "web-proxy.gbr.hp.com:8080",
-	"tab_completion": false,
 	"ignored_packages":
 	[
 		"Vintage"
-	]
+	],
+	"tab_completion": false,
+	"translate_tabs_to_spaces": true
 }
