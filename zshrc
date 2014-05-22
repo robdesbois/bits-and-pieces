@@ -14,10 +14,15 @@ alias gerp=grep
 alias vi=vim
 
 
+### SETUP ENVIRONMENT ###
+export SVN_EDITOR=vim
+
+
 ### SETUP OPTIONS ###
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt AUTO_CD
+setopt interactivecomments # allow comments on command-line
 # need to understand extended globbing before enabling this:
 #setopt EXTENDED_GLOB 
 
