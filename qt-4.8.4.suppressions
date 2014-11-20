@@ -1,0 +1,122 @@
+{
+   invalid address during mem access; qt_blend_argb32_on_argb32_ssse3
+   Memcheck:Addr16
+   fun:_Z31qt_blend_argb32_on_argb32_ssse3PhiPKhiiii
+}
+{
+   uninitialised value in QTJSC heap
+   Memcheck:Value8
+   fun:_ZN5QTJSC4Heap18markConservativelyERNS_9MarkStackEPvS3_
+   fun:_ZN5QTJSC4Heap39markCurrentThreadConservativelyInternalERNS_9MarkStackE
+   fun:_ZN5QTJSC4Heap31markCurrentThreadConservativelyERNS_9MarkStackE
+   fun:_ZN5QTJSC4Heap9markRootsEv
+   fun:_ZN5QTJSC4Heap5resetEv
+   fun:_ZN5QTJSC4Heap8allocateEm
+   fun:_ZN5QTJSC16InternalFunctionC2EPNS_12JSGlobalDataEN5QTWTF17NonNullPassRefPtrINS_9StructureEEERKNS_10IdentifierE
+   fun:_ZN7QScript10QtFunctionC1EN5QTJSC7JSValueEibPNS1_12JSGlobalDataEN5QTWTF10PassRefPtrINS1_9StructureEEERKNS1_10IdentifierE
+   fun:_ZN7QScript15QObjectDelegate18getOwnPropertySlotEP13QScriptObjectPN5QTJSC9ExecStateERKNS3_10IdentifierERNS3_12PropertySlotE
+   fun:_ZN13QScriptObject18getOwnPropertySlotEPN5QTJSC9ExecStateERKNS0_10IdentifierERNS0_12PropertySlotE
+   fun:_ZNK5QTJSC8JSObject14hasOwnPropertyEPNS_9ExecStateERKNS_10IdentifierE
+   fun:_ZN20QScriptEnginePrivate11setPropertyEPN5QTJSC9ExecStateENS0_7JSValueERKNS0_10IdentifierES3_RK6QFlagsIN12QScriptValue12PropertyFlagEE
+}
+{
+   branch on uninitalised memory in QTJSC heap
+   Memcheck:Cond
+   fun:_ZN5QTJSC4Heap18markConservativelyERNS_9MarkStackEPvS3_
+   fun:_ZN5QTJSC4Heap39markCurrentThreadConservativelyInternalERNS_9MarkStackE
+   fun:_ZN5QTJSC4Heap31markCurrentThreadConservativelyERNS_9MarkStackE
+   fun:_ZN5QTJSC4Heap9markRootsEv
+   fun:_ZN5QTJSC4Heap5resetEv
+   fun:_ZN5QTJSC4Heap8allocateEm
+   fun:_ZN5QTJSC16InternalFunctionC2EPNS_12JSGlobalDataEN5QTWTF17NonNullPassRefPtrINS_9StructureEEERKNS_10IdentifierE
+   fun:_ZN7QScript10QtFunctionC1EN5QTJSC7JSValueEibPNS1_12JSGlobalDataEN5QTWTF10PassRefPtrINS1_9StructureEEERKNS1_10IdentifierE
+   fun:_ZN7QScript15QObjectDelegate18getOwnPropertySlotEP13QScriptObjectPN5QTJSC9ExecStateERKNS3_10IdentifierERNS3_12PropertySlotE
+   fun:_ZN13QScriptObject18getOwnPropertySlotEPN5QTJSC9ExecStateERKNS0_10IdentifierERNS0_12PropertySlotE
+   fun:_ZNK5QTJSC8JSObject14hasOwnPropertyEPNS_9ExecStateERKNS_10IdentifierE
+   fun:_ZN20QScriptEnginePrivate11setPropertyEPN5QTJSC9ExecStateENS0_7JSValueERKNS0_10IdentifierES3_RK6QFlagsIN12QScriptValue12PropertyFlagEE
+}
+
+{
+   Qt mutex..
+   drd:ConflictingAccess
+   fun:_ZN13QMutexPrivate4waitEi
+   fun:_ZN6QMutex12lockInternalEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   Qt mutex timer
+   drd:ConflictingAccess
+   ...
+   fun:_ZN13QElapsedTimer5startEv
+   fun:_ZN6QMutex12lockInternalEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   Qt mutex lock
+   drd:ConflictingAccess
+   fun:_ZN6QMutex12lockInternalEv
+   fun:_ZN17QThreadPoolThread3runEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QThreadPoolThread run
+   drd:ConflictingAccess
+   fun:_ZN17QThreadPoolThread3runEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   oh god more QThreadPool
+   drd:ConflictingAccess
+   fun:_ZN17QThreadPoolThread21registerTheadInactiveEv
+   fun:_ZN17QThreadPoolThread3runEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   more Qt mutex timer
+   drd:ConflictingAccess
+   ...
+   fun:_ZNK13QElapsedTimer12nsecsElapsedEv
+   fun:_ZN6QMutex12lockInternalEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QThread start
+   drd:ConflictingAccess
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QThread mutex wakeup
+   drd:ConflictingAccess
+   fun:_ZN13QMutexPrivate6wakeUpEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QEventDispatcher..
+   drd:ConflictingAccess
+   fun:g_main_context_new
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   fun:_ZN14QThreadPrivate21createEventDispatcherEP11QThreadData
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QTextCodec
+   drd:ConflictingAccess
+   ...
+   fun:_ZNK7QString11toLocal8BitEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   QThreadPoolPrivate...
+   drd:ConflictingAccess
+   fun:_ZNK18QThreadPoolPrivate17activeThreadCountEv
+   fun:_ZNK18QThreadPoolPrivate20tooManyThreadsActiveEv
+   fun:_ZN17QThreadPoolThread3runEv
+   fun:_ZN14QThreadPrivate5startEPv
+}
+{
+   thread pool MORE this is dull..
+   drd:ConflictingAccess
+   fun:_ZN17QThreadPoolThread3runEv
+   fun:_ZN14QThreadPrivate5startEPv
+}

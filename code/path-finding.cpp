@@ -85,19 +85,71 @@ auto choose_random_node(const node_seq& nodes, const node_info_map&) -> node_ite
     return std::next( nodes.begin(), uniform_dist(e1) );
 }
 
-/** Chooses a node that provides shortest path. */
+/** Chooses one of the nodes with the shortest path; also called 'Uniform Cost Search'.
+ * Behaviour is undefined if nodes is empty.
+ * If the path info is missing for a node then it will only be considered if all nodes' path infos are missing.
+ */
 auto choose_node_with_shortest_path(const node_seq& nodes, const node_info_map& nodeInfo) -> node_iterator
 {
-    return std::min_element( nodes.begin(), nodes.end(), [&]( const node_t& a, const node_t& b ) mutable {
-        auto aInfo = nodeInfo.find(a);
-        auto bInfo = nodeInfo.find(b);
+    // can't use map::operator[] as it's const, so we'll hide yuckiness in here
+    auto path_length = [&]( const node_t& node ) {
+        auto info = nodeInfo.find(node);
+        if (info == nodeInfo.end())
+            return std::numeric_limits<unsigned int>::max();
 
-        if ( aInfo == nodeInfo.end() or bInfo == nodeInfo.end() )
-            return false;
+        return info->second.pathLength;
+    };
 
-        return aInfo->second.pathLength < bInfo->second.pathLength;
+    // cache best length to avoid repeatedly searching for current best node's info
+    auto bestLength = path_length( nodes.front() );
+    
+    return std::min_element( nodes.begin(), nodes.end(), [&]( const node_t& node, const node_t& /*currentBest*/ ) {
+        return path_length(node) < bestLength;
     } );
 }
+
+
+/** Chooses one of the nodes that appears to have the shortest distance to the goal node.
+ * This heuristic requires a functor that can estimate the distance, and makes the below
+ * search algorithm A*.
+ * Note that this functor caches graph information for performance, so if the graph structure
+ * changes or a new graph is being used then a new instance must be constructed.
+ */
+struct choose_node_closest_to_goal
+{
+    using calc_distance_func = std::function< unsigned int( const node_t& node ) >;
+
+    choose_node_closest_to_goal( calc_distance_func estimate_distance_ )
+        : estimate_distance(estimate_distance_)
+    {}
+
+
+    node_iterator operator()(const node_seq& nodes, const node_info_map& /*nodeInfo*/)
+    {
+        // hides away use of cached distances
+        auto get_distance = [&]( const node_t& node ) -> unsigned int {
+            auto it = distances.find(node);
+            
+            // calculate & save if not there
+            if ( it == distances.end() )
+                it = distances.insert( std::make_pair(node, estimate_distance(node)) ).first;
+            
+            return it->second;
+        };
+
+        auto bestDistance = get_distance( nodes.front() );
+        
+        return std::min_element( nodes.begin(), nodes.end(), [&]( const node_t& node, const node_t& /*currentBest*/ ) {
+            return get_distance(node) < bestDistance;
+        } );
+    }
+
+
+private:
+    calc_distance_func               estimate_distance;
+    std::map< node_t, unsigned int > distances; //< cache estimated distances instead of repeatedly recalculating
+};
+
 
 
 struct PathGenerator

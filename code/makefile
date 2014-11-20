@@ -1,5 +1,5 @@
 CC     = g++
-CFLAGS = -W -Wall -O2 --std=c++11 $(LDLIBS)
+CFLAGS = -W -Wall -O2 --std=c++11 $(LDLIBS) -fdiagnostics-color=always -g
 
 targets = $(shell find . -path ./does-flto-do-function-inlining -prune -o -name '*.cpp' -print | sed -e 's_\(.*\)\.cpp$$_\1_g' )
 
