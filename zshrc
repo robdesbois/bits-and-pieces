@@ -12,10 +12,16 @@ compinit
 alias gti=git
 alias gerp=grep
 alias vi=vim
-
+alias ss='svn status --ignore-externals'
+alias grep='grep --color=always'
+alias less='less -r'
+alias ssh='TERM=xterm-256color ssh' # prevent tmux/screen termtype from being forwarded to host
 
 ### SETUP ENVIRONMENT ###
 export SVN_EDITOR=vim
+export PATH=$PATH:~/bits-and-pieces/scripts/
+# lib path for iVNT
+export LD_LIBRARY_PATH=.:../deps/xerces:../deps/qt:../deps/protobuf:../deps/oracle:../deps/log4cxx:../deps/libxl:../deps/gtest:../deps/gsoap:../deps/boost:../deps/xerces/lib:../deps/qt/lib:../deps/protobuf/lib:../deps/oracle/lib:../deps/log4cxx/lib:../deps/libxl/lib:../deps/gtest/lib:../deps/boost/lib
 
 
 ### SETUP OPTIONS ###

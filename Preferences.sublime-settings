@@ -5,13 +5,28 @@
 		"*.swp",
 		"*.o"
 	],
+	"folder_exclude_patterns":
+	[
+		"docs",
+		"bin",
+		"bind",
+		"moc",
+		"mocd",
+		"obj",
+		"objd"
+	],
 	"font_face": "Inconsolata",
-	"font_size": 12,
-	"http_proxy": "web-proxy.gbr.hp.com:8080",
+	"font_size": 15,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"rulers":
+	[
+		80,
+		120
+	],
 	"tab_completion": false,
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
 }

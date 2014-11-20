@@ -8,11 +8,11 @@
 * May need to remove vim-minimal before installing vim
 * Setup rpmfusion free & non-free repositories from rpmfusion.org before proceeding
 
-ant
 boost boost-devel
 gcc-c++
 git
 gnome-tweak-tool
+google-chrome
 kernel-devel
 man-pages
 meld
@@ -24,17 +24,8 @@ valgrind
 vim
 xorg-x11-drv-nvidia
 
-== Project-specific packages ==
-glibc-devel.i686
-libuuid-devel
-cppunit cppunit-devel
-inotify-tools inotify-tools-devel
-openssl openssl-devel openssl-devel.i686
-valgrind-devel
-
 
 === Non-repository packages ===
-* google-chrome - due frequent update & slow repository pull from upstream
 * sublime text - sublimetext.com 
 * Virtual Box - virtualbox.org
 * Inconsolata - monospaced font for coding - http://www.levien.com/type/myfonts/inconsolata.html
