@@ -1,0 +1,28 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: GDB Backtrace
+scopeName: text.gdb-backtrace
+fileTypes: []
+uuid: 0f65c894-9e1c-424a-918c-8147247b21c0
+
+patterns:
+    -   match:  "^Thread ([0-9]+) \\(LWP [0-9]+\\):$"
+        name:   comment.gdb-backtrace
+        captures:
+            '1': {name: constant.numeric.thread}
+
+    -   match:  "^#[0-9]+\\s+"
+        name:   constant.numeric.frame
+
+    -   match:    "(0x[0-9a-f]+)? in ([^ ]+) (\\(.*\\))"
+        name:     text.gdb-backtrace.frame
+        captures:
+            '1': {name: string.gdb-backtrace.address}
+            '2': {name: entity.name.function}
+            '3': {name: comment.gdb-backtrace.function-arg-list}
+
+
+    -   match:  " at ([^:]+):([0-9]+)"
+        name:   text.gdb-backtrace.file-location
+        captures:
+            '1': {name: string.other.link.gdb-backtrace.filename}
+            '2': {name: constant.numeric.line}

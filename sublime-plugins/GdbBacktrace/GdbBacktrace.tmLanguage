@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array/>
+	<key>name</key>
+	<string>GDB Backtrace</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.thread</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^Thread ([0-9]+) \(LWP [0-9]+\):$</string>
+			<key>name</key>
+			<string>comment.gdb-backtrace</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^#[0-9]+\s+</string>
+			<key>name</key>
+			<string>constant.numeric.frame</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.gdb-backtrace.address</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>comment.gdb-backtrace.function-arg-list</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(0x[0-9a-f]+)? in ([^ ]+) (\(.*\))</string>
+			<key>name</key>
+			<string>text.gdb-backtrace.frame</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.other.link.gdb-backtrace.filename</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.line</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string> at ([^:]+):([0-9]+)</string>
+			<key>name</key>
+			<string>text.gdb-backtrace.file-location</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.gdb-backtrace</string>
+	<key>uuid</key>
+	<string>0f65c894-9e1c-424a-918c-8147247b21c0</string>
+</dict>
+</plist>
