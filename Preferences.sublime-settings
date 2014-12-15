@@ -13,7 +13,9 @@
 		"moc",
 		"mocd",
 		"obj",
-		"objd"
+		"objd",
+		"uic",
+		"uicd"
 	],
 	"font_face": "Inconsolata",
 	"font_size": 15,
