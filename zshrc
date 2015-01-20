@@ -13,6 +13,7 @@ alias gti=git
 alias gerp=grep
 alias vi=vim
 alias ss='svn status --ignore-externals'
+alias cppgrep='grep -R --include=\*.cpp --include=\*.h --include=\*.hpp'
 alias grep='grep --color=always'
 alias less='less -r'
 alias ssh='TERM=xterm-256color ssh' # prevent tmux/screen termtype from being forwarded to host
