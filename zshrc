@@ -9,6 +9,8 @@ compinit
 
 
 ### SETUP ALIASES
+alias ll='ls -l'
+alias ls='ls --color=auto'
 alias gti=git
 alias gerp=grep
 alias vi=vim
