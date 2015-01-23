@@ -30,5 +30,16 @@
 	],
 	"tab_completion": false,
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+
+	"highlight_modified_tabs": true,
+    "highlight_line": true,
+
+    "indent_guide_options": ["draw_active"],
+    "shift_tab_unindent": false,
+
+    "match_brackets_content": false,
+    "match_brackets_angle": true,
+
+	"fade_fold_buttons": false
 }
