@@ -38,12 +38,16 @@ setopt interactivecomments # allow comments on command-line
 
 
 ### SETUP KEYS ###
-# note: at zsh prompt hit Ctrl+V then special key to find the code
+typeset -A key
+# Read key escape sequences from terminfo DB
+key[Home]=${terminfo[khome]}
+key[End]=${terminfo[kend]}
+key[Delete]=${terminfo[kdch1]}
 bindkey "^\eOC" forward-word      # Ctrl+Right
 bindkey "^\eOD" backward-word     # Ctrl+Left
-bindkey "^[[1~" beginning-of-line # Home
-bindkey "^[[4~" end-of-line       # End
-bindkey "^[[3~" delete-char       # Delete
+[[ -n "${key[Home]}"   ]] && bindkey "${key[Home]}"   beginning-of-line # Home
+[[ -n "${key[End]}"    ]] && bindkey "${key[End]}"    end-of-line       # End
+[[ -n "${key[Delete]}" ]] && bindkey "${key[Delete]}" delete-char       # Delete
 
 
 ### COMPLETION OPTIONS ###
