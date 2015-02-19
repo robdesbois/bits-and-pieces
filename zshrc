@@ -21,6 +21,7 @@ alias less='less -r'
 alias ssh='TERM=xterm-256color ssh' # prevent tmux/screen termtype from being forwarded to host
 
 ### SETUP ENVIRONMENT ###
+export EDITOR=vim
 export SVN_EDITOR=vim
 export PATH=$PATH:~/bits-and-pieces/scripts/
 # lib path for iVNT

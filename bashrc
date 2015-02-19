@@ -15,6 +15,7 @@ alias gerp=grep
 alias vi=vim
 
 
+export EDITOR=vim
 export SVN_EDITOR=vim
 export GCC_COLORS=1
 
