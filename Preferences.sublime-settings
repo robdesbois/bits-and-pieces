@@ -1,5 +1,6 @@
 {
-	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme",
+	"color_scheme": "Packages/Base16 Color Schemes/base16-default.dark.tmTheme",
+	"fade_fold_buttons": false,
 	"file_exclude_patterns":
 	[
 		"*.swp",
@@ -19,27 +20,25 @@
 	],
 	"font_face": "Inconsolata",
 	"font_size": 15,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"match_brackets_angle": true,
+	"match_brackets_content": false,
 	"rulers":
 	[
 		80,
 		120
 	],
+	"shift_tab_unindent": false,
 	"tab_completion": false,
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
-
-	"highlight_modified_tabs": true,
-    "highlight_line": true,
-
-    "indent_guide_options": ["draw_active"],
-    "shift_tab_unindent": false,
-
-    "match_brackets_content": false,
-    "match_brackets_angle": true,
-
-	"fade_fold_buttons": false
+	"trim_trailing_white_space_on_save": true
 }
