@@ -1,4 +1,5 @@
 set ai
-set tabstop=3
+set tabstop=4
+set expandtab
 
 colorscheme desert
