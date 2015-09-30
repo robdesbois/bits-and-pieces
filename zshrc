@@ -7,6 +7,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+### ENABLE BASH COMPLETION ###
+autoload bashcompinit
+bashcompinit
+source /etc/bash_completion.d/google-test
 
 ### SETUP ALIASES
 alias ll='ls -l'
@@ -15,10 +19,11 @@ alias gti=git
 alias gerp=grep
 alias vi=vim
 alias ss='svn status --ignore-externals'
-alias cppgrep='grep -R --include=\*.cpp --include=\*.h --include=\*.hpp'
+alias cppgrep='grep -R --include=\*.cpp --include=\*.h --include=\*.hpp --exclude-dir=uic --exclude-dir=uicd --exclude-dir=moc --exclude-dir=mocd'
 alias grep='grep --color=always'
 alias less='less -r'
 alias ssh='TERM=xterm-256color ssh' # prevent tmux/screen termtype from being forwarded to host
+alias alarm="echo -e '\\a'"
 
 ### SETUP ENVIRONMENT ###
 export EDITOR=vim
