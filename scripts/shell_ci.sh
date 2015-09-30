@@ -22,7 +22,8 @@ shell_ci_on_build_result()
 
     # Watch for success & run given command;
     while inotifywait -q -e close_write $watchDir/.shell_ci_built ; do
-        date
+        echo -e "\n\n\n\n\n\n\n\n\n\n"
+		  date
         $cmd $args || echo -en '\a'
     done &
     successPid=$!
@@ -35,6 +36,8 @@ shell_ci_on_build_result()
         date
         echo "Build failure...."
     done
+
+    trap TERM INT
 }
 
 
