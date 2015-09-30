@@ -12,15 +12,18 @@ set print pretty on
 
 
 # ---------------------------------------------------------------------------------- #
-# python section to import pretty printers for Qt 4
+# python section to import pretty printers for Qt
 python
 
-import sys
+import sys, os.path
 
-sys.path.insert(0, '/home/rob/bits-and-pieces')
-#from qt4 import register_qt4_printers
+sys.path.insert(0, os.path.expanduser('~/.gdb'))
+
 from qt4_gdb_pretty_printers import register_qt4_printers
 register_qt4_printers (None)
+
+import qt5printers
+qt5printers.register_printers(gdb.current_objfile())
 
 end
 # ---------------------------------------------------------------------------------- #
