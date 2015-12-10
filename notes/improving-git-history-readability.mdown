@@ -1,0 +1,14 @@
+# Readable git history #
+
+http://victorlin.me/posts/2013/09/30/keep-a-readable-git-history
+
+## Always work on branch ##
+
+Always create separate branch for ticket, issue, task etc. Don't commit anything on branch that's not directly part of that work.
+
+When ready to merge *don't fast-forward; always create commit* to keep the branch history.
+
+
+## Rebase before merge ##
+
+Always rebase branch onto master before merging it in.
